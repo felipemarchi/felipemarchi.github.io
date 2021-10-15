@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Indicador de Protocolo do Lê</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" href="https://lh3.googleusercontent.com/a-/AOh14GgrmioUWtrp9alH2_9fd8E13RDBbYKf9cp2GSf7lg=s900" />
+    <style>
+    </style>
+  </head>
+  <body>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	
+	<div id="container" style="min-width: 620px; max-width: 800px; height: 600px; margin: 3em auto 0 auto"></div>
+	
+	<script>
+	Highcharts.chart('container', {
+
+    chart: {
+        type: 'gauge',
+        plotBackgroundColor: null,
+        plotBackgroundImage: 'https://lh4.googleusercontent.com/BfQgvyD2O2FKJv5nuGN1xHNbN8LEe8v0EinGONoy21xgjGZjVfz0GeCrIxWwZB-gARc3yWOZneRgtgKo16fw=w1920-h902',
+        plotBorderWidth: 0,
+        plotShadow: false
+    },
+
+    title: {
+        text: 'Indicador de Protocolo do Lê'
+    },
+
+    pane: {
+        startAngle: -150,
+        endAngle: 150,
+        background: [{
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, '#FFF'],
+                    [1, '#333']
+                ]
+            },
+            borderWidth: 0,
+            outerRadius: '109%'
+        }, {
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, '#333'],
+                    [1, '#FFF']
+                ]
+            },
+            borderWidth: 1,
+            outerRadius: '107%'
+        }, {
+            // default background
+        }, {
+            backgroundColor: '#DDD',
+            borderWidth: 0,
+            outerRadius: '105%',
+            innerRadius: '103%'
+        }]
+    },
+
+    // the value axis
+    yAxis: {
+        min: 0,
+        max: 90,
+
+        minorTickInterval: 'auto',
+        minorTickWidth: 1,
+        minorTickLength: 10,
+        minorTickPosition: 'inside',
+        minorTickColor: '#666',
+
+        tickPixelInterval: 30,
+        tickWidth: 2,
+        tickPosition: 'inside',
+        tickLength: 10,
+        tickColor: '#666',
+        labels: {
+            step: 2,
+            rotation: 'auto'
+        },
+        title: {
+            text: ''
+        },
+        plotBands: [{
+            from: 0,
+            to: 30,
+            color: '#55BF3B' // red
+            
+        }, {
+            from: 30,
+            to: 60,
+            color: '#DDDF0D' // yellow
+        }, {
+            from: 60,
+            to: 90,
+            color: '#DF5353' // greencolor: '#55BF3B' // red
+        }]
+    },
+
+    series: [{
+        name: 'Dias percorridos',
+        data: [0],
+        tooltip: {
+            valueSuffix: ''
+        }
+    }]
+
+	},
+
+	// Add some life
+	function (chart) {
+		if (!chart.renderer.forExport) {
+			setInterval(function () {
+				var point = chart.series[0].points[0],
+					newVal,
+					inc = Math.round((Math.random() - 0.5) * 20);
+			  var meta = 3;
+			  var qtdProdutividade = 0;
+			  if(true){
+				qtdProdutividade = qtdProdutividade + 15;
+			  }
+			  
+			  var dia1 = new Date("10/01/2021");
+			  var hoje = new Date();
+			  var timeDiff = Math.abs(hoje - dia1);
+		      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 			  
+			  var valorMax = diffDays;
+			  
+			  newVal = point.y + qtdProdutividade; 
+			  
+				if (newVal >= valorMax) {
+					newVal = valorMax;
+				}
+
+				point.update(newVal);
+
+			}, 3000);
+		}
+	});
+	</script>
+  </body>
+</html>
